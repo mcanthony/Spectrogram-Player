@@ -53,18 +53,18 @@ function process(e)
 
 	var d = ctx.getImageData(0,0,W,H).data;
 	var b = bfr.getChannelData(0);
-	var i = 0;
+	var i = 0, j, x, y, a;
 
-	for(var x = 0; x < W; x++)
+	for(x = 0; x < W; x++)
 	{
 		// Make up missing samples
-		for(var j = 0; j < spc; j++, i++)
+		for(j = 0; j < spc; j++, i++)
 		{
 			// Add all sinusoids on a pixel column
-			for(var y = 0; y < H; y++)
+			for(y = 0; y < H; y++)
 			{
-				// Get the aplitude and cube it to reduce noise
-				var a = Math.pow(d[(y*W+x)*4]/255,3);
+				// Get the amplitude and cube it to reduce noise
+				a = Math.pow(d[(y*W+x)*4]/255,3);
 				// Reject low amplitudes to speed up the process
 				if(a<0.01)continue;
 
@@ -88,8 +88,8 @@ function process(e)
 	var t0 = new Date;
 
 	// Move the indicator on the timeline
-	window.setInterval(function() {
-
+	window.setInterval(function()
+	{
 		var t = Math.min((new Date-t0)/1000,duration);
 		if(t==duration) { t0 = new Date; }
 		$indicator.style.left = 960/duration*t + "px";
