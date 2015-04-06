@@ -1,0 +1,85 @@
+* { margin: 0px; padding: 0px; }
+
+html {
+	height: 100%;
+	background-image: linear-gradient(0deg, #ccc,#fff);
+}
+
+body {
+	width: 960px;
+	margin: 150px auto 0px auto;
+	font-family: Roboto, Helvetica, sans-serif;
+}
+
+h2 {
+	color: #999;
+	font-weight: normal;
+	font-size: 1.2em;
+	margin-bottom: 1em;
+}
+
+#indicator {
+	width: 2px;
+	height: 100%;
+
+	position: absolute;
+	top: 0px; left: 0px;
+	background-color: #f00;
+	display: none;
+}
+
+#display {
+	position: relative;
+	overflow: hidden;
+
+	background-color: #000;
+	box-shadow: 0px 0px 50px #CCC;
+	border-radius: 10px;
+}
+
+#spectrogram
+{
+	width: 960px;
+	height: 540px;
+
+	background-image: url('img/tetris.png');
+	background-size: 100%;
+
+	-webkit-filter: brightness(2) sepia();
+	-moz-filter: brightness(2) sepia();
+	filter: brightness(2) sepia();
+}
+
+#play {
+	position: absolute;
+	top: 2em; left: 2em;
+
+	color: #333;
+	font-size: 0.8em;
+	background-color: #FFF;
+
+	padding: 0.4em 1em;
+	border-radius: 5px;
+
+	cursor: pointer;
+	display: none;
+}
+
+#sample {
+	color: #333;
+	background-color: #FFF;
+
+	position: absolute;
+	top: 2em; left: 2em;
+
+	padding: 0.6em 1em;
+	border-radius: 5px;
+	border: 0px;
+}
+
+#credits {
+	color: #999;
+	font-size: 0.8em;
+	text-align: right;
+	margin-top: 1em;
+}

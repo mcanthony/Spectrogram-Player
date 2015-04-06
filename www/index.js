@@ -10,7 +10,7 @@ $sample.addEventListener("change", function(e)
 	$play.style.display = "block";
 
 	img.addEventListener("load", init);
-	$spectrogram.src = img.src = e.target.value.toLowerCase() + ".png";
+	$spectrogram.style.backgroundImage = "url('img/" + (img.src = e.target.value.toLowerCase() + ".png") + "')";
 });
 
 function init()
@@ -79,6 +79,9 @@ function process(e)
 		}
 	}
 
+	$play.style.display = "none";
+	$indicator.style.display = "block";
+
 	// Assign buffer and start playback
 	src.buffer = bfr; src.loop = true;
 	src.connect(atx.destination);
@@ -94,7 +97,4 @@ function process(e)
 		$indicator.style.left = 960/duration*t + "px";
 
 	}, 1000/30);
-
-	// Hide the play button
-	$play.style.display = "none";
 }
