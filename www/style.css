@@ -45,9 +45,9 @@ h2 {
 	background-image: url('img/tetris.png');
 	background-size: 100%;
 
-	-webkit-filter: brightness(2) sepia();
-	-moz-filter: brightness(2) sepia();
-	filter: brightness(2) sepia();
+	-webkit-filter: brightness(2) sepia(1);
+	-moz-filter: brightness(2) sepia(1);
+	filter: brightness(2) sepia(1);
 }
 
 #play {

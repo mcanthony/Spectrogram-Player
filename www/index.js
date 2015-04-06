@@ -10,7 +10,7 @@ $sample.addEventListener("change", function(e)
 	$play.style.display = "block";
 
 	img.addEventListener("load", init);
-	$spectrogram.style.backgroundImage = "url('img/" + (img.src = e.target.value.toLowerCase() + ".png") + "')";
+	$spectrogram.style.backgroundImage = "url('" + (img.src = "img/" + e.target.value.toLowerCase() + ".png") + "')";
 });
 
 function init()
