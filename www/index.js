@@ -31,7 +31,7 @@ function process(e)
 	var W = img.width;
 
 	// Maximum frequency on the image's y coordinate
-	var mfreq = 20000;
+	var mfreq = 22000;
 	// Duration of the original recording
 	var duration = 38;
 	// Samples played per second
