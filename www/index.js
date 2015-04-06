@@ -20,7 +20,6 @@ function init()
 	$play.addEventListener("click", function(e) {
 		alert("Please lower your volume before continuing.");
 		this.innerHTML = "Now processing. This takes about 10 seconds.";
-		this.style.borderTop = "none";
 		window.setTimeout(process, 100);
 	});
 }
@@ -38,7 +37,7 @@ function process(e)
 	var sampleRate = 20000;
 	// Required amount of samples per pixel column
 	var spc = Math.round(duration*sampleRate/W);
-	// Total amount of pixels
+	// Total amount of samples
 	var samples = W*spc;
 	
 	var atx = new AudioContext();
@@ -47,7 +46,7 @@ function process(e)
 	// Buffer to store audio samples
 	var bfr = atx.createBuffer(1,samples,sampleRate);
 
-	// Store the image inside a canvas
+	// Store the image inside a canvas to read its pixel data
 	var ctx = document.createElement("canvas").getContext("2d");
 	ctx.canvas.width = W; ctx.canvas.height = H; ctx.drawImage(img,0,0,W,H);
 
