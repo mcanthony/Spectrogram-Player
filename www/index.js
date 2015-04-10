@@ -30,11 +30,11 @@ function process(e)
 	var W = img.width;
 
 	// Maximum frequency on the image's y coordinate
-	var mfreq = 22000;
+	var mfreq = 22050;
 	// Duration of the original recording
 	var duration = 38;
 	// Samples played per second
-	var sampleRate = 20000;
+	var sampleRate = mfreq*2;
 	// Required amount of samples per pixel column
 	var spc = Math.round(duration*sampleRate/W);
 	// Total amount of samples
