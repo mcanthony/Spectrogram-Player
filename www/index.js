@@ -19,7 +19,7 @@ function init()
 
 	$play.addEventListener("click", function(e) {
 		alert("Please lower your volume before continuing.");
-		this.innerHTML = "Now processing. This takes about 10 seconds.";
+		this.innerHTML = "Now processing.. (5-10s)";
 		window.setTimeout(process, 100);
 	});
 }
@@ -54,28 +54,28 @@ function process(e)
 	var b = bfr.getChannelData(0);
 	var i = 0, j, x, y, a;
 
-	for(x = 0; x < W; x++)
+	// Loop through all frequencies (rows)
+	for(y = 0; y < H; y++, i = 0)
 	{
-		// Make up missing samples
-		for(j = 0; j < spc; j++, i++)
+		// Loop through all samples (columns)
+		for(x = 0; x < W; x++)
 		{
-			// Add all sinusoids on a pixel column
-			for(y = 0; y < H; y++)
-			{
-				// Get the amplitude and cube it to reduce noise
-				a = Math.pow(d[(y*W+x)*4]/255,3);
-				// Reject low amplitudes to speed up the process
-				if(a<0.01)continue;
+			// Get the amplitude and cube it to reduce noise
+			a = Math.pow(d[(y*W+x)*4]/255,3);
 
-				// Add the sinusoid
-				b[i] += a*Math.cos(
-					Math.PI*2*
-					// Frequency
-					(H-y)/H*mfreq*
-					// Time
-					i/samples*duration
-				);
-			}
+			// Reject low amplitudes to speed up the process
+			if(a<0.01){ i+=spc; continue; }
+
+			// Get the frequency
+			// w = Math.PI*2*(H-y)/H*mfreq
+			// t = i/samples*duration
+
+			// Combine and precalculate cosine parameters
+			wt = Math.PI*2*(H-y)/H*mfreq / samples*duration;
+
+			// Make up missing samples
+			for(j = 0; j < spc; j++, i++)
+			{ b[i] += a*Math.cos(wt*i); }
 		}
 	}
 
