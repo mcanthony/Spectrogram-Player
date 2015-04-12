@@ -52,7 +52,7 @@ function process(e)
 
 	var d = ctx.getImageData(0,0,W,H).data;
 	var b = bfr.getChannelData(0);
-	var i = 0, j, x, y, a;
+	var i = 0, j, x, y, a, wt;
 
 	// Loop through all frequencies (rows)
 	for(y = 0; y < H; y++, i = 0)
@@ -64,18 +64,18 @@ function process(e)
 			a = Math.pow(d[(y*W+x)*4]/255,3);
 
 			// Reject low amplitudes to speed up the process
-			if(a<0.01){ i+=spc; continue; }
+			if(a<0.01){ i += spc; continue; }
 
 			// Get the frequency
 			// w = Math.PI*2*(H-y)/H*mfreq
 			// t = i/samples*duration
 
-			// Combine and precalculate cosine parameters
-			wt = Math.PI*2*(H-y)/H*mfreq / samples*duration;
+			// Combine and precalculate sinusoid parameters
+			wt = Math.PI*2 * ~~((H-y)/H*mfreq) / samples*duration;
 
 			// Make up missing samples
 			for(j = 0; j < spc; j++, i++)
-			{ b[i] += a*Math.cos(wt*i); }
+			{ b[i] += a*Math.sin(wt*i); }
 		}
 	}
 
