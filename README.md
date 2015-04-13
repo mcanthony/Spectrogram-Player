@@ -8,7 +8,7 @@ Works best in Chromium.
 
 
 #Screenshot
-![screenshot](screenshot.png)
+![screenshot](https://raw.githubusercontent.com/elias-schuett/Spectrogram-Player/master/screenshot.png)
 
 #License
 MIT
